@@ -1,0 +1,40 @@
+---
+- hosts: all
+  tasks:
+    - name: copy webappjar
+      copy:
+        src: /home/ubuntu/deploy-webapp/webappjar/target
+        dest: /home/ubuntu/deploy-webapp/webappjar/    
+
+    - name: copy webappjar Dockerfile
+      copy:
+        src: /home/ubuntu/deploy-webapp/webappjar
+        dest: /home/ubuntu/deploy-webapp/webappjar/
+    
+    - name: copy webappjar docker-compose yml
+      copy:
+        src: /home/ubuntu/deploy-webapp/webappjar/webappjar-docker-compose.yml
+        dest: /home/ubuntu/deploy-webapp/webappjar/
+    
+    - name: copy webappjar settings .env file
+      copy:
+        src: /home/ubuntu/deploy-webapp/webappjar/webappjar.settings.qa.env
+        dest: /home/ubuntu/deploy-webapp/webappjar/
+    
+    - name: stop running webappjar container
+      command: sudo docker container stop webappjar
+      ignore_errors: True
+
+    - name: remove existing webappjar container
+      command: sudo docker container rm webappjar
+      ignore_errors: True
+
+    - name: remove existing webappjar image
+      command: sudo docker rmi webappjar --force
+      ignore_errors: True
+
+    - name: build image of webappjar using the dockerfile in this path
+      command: sudo docker image build -t webappjar /home/ubuntu/deploy-webapp/webappjar
+
+    - name: docker-compose-up webappjar
+      command: sudo docker-compose --env-file /home/ubuntu/deploy-webapp/webappjar/webappjar.settings.qa.env -f /home/ubuntu/deploy-webapp/webappjar/webappjar-docker-compose.yml up -d
