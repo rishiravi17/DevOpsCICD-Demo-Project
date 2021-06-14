@@ -15,7 +15,7 @@ VOLUME demoappvol
 ADD ./target/demo-${VERSION}-SNAPSHOT.jar demoapp-${VERSION}.jar
 
 # touch the archive for timestamp
-RUN sh -c 'touch /demoapp.jar'
+RUN sh -c 'touch /demoapp-${VERSION}.jar'
 
 # entrypoint to the image on run
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/demoapp.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/demoapp-${VERSION}.jar"]
