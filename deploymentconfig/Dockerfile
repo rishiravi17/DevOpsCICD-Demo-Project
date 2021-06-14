@@ -11,8 +11,8 @@ ARG VERSION=0.0.1
 # mount the temp volume
 VOLUME demoappvol
 
-# Add the service as nlawsapi.jar
-ADD ./target/demo-${VERSION}-SNAPSHOT.jar demoapp.jar
+# Add the service as demoapp.jar
+ADD ./target/demo-${VERSION}-SNAPSHOT.jar demoapp-${VERSION}.jar
 
 # touch the archive for timestamp
 RUN sh -c 'touch /demoapp.jar'
