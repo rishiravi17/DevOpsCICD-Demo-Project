@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.nuvepro.demo.DemoApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.002 s - in com.nuvepro.demo.DemoApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.397 s - in com.nuvepro.demo.DemoApplicationTests
+>>>>>>> 2707c33e930b4b647f47bb97b2cdeb5d15c09d5d
