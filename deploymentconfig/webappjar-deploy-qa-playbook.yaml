@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: create deployment folders
-      command: mkdir -p deploy/deploymentconfig
+      command: mkdir -p /home/ubuntu/deploy/deploymentconfig
       ignore_errors: True
 
     - name: copy webappjar
