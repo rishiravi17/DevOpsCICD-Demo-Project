@@ -1,36 +1,36 @@
 ---
 - hosts: all
   tasks:
-    - name: copy demoapp
+    - name: copy webappjar
       copy:
         src: /home/ubuntu/deploy/deploymentconfig/target
         dest: /home/ubuntu/deploy/deploymentconfig/
 
-    - name: copy demoapp Dockerfile
+    - name: copy webappjar Dockerfile
       copy:
         src: /home/ubuntu/deploy/deploymentconfig/Dockerfile
         dest: /home/ubuntu/deploy/deploymentconfig/
     
-    - name: copy demoapp docker-compose yml
+    - name: copy webappjar docker-compose yml
       copy:
-        src: /home/ubuntu/deploy/deploymentconfig/demoapp-docker-compose.yml
+        src: /home/ubuntu/deploy/deploymentconfig/webappjar-docker-compose.yml
         dest: /home/ubuntu/deploy/deploymentconfig/
     
-    - name: copy demoapp settings .env file
+    - name: copy webappjar settings .env file
       copy:
-        src: /home/ubuntu/deploy/deploymentconfig/demoapp.settings.qa.env
+        src: /home/ubuntu/deploy/deploymentconfig/webappjar.settings.qa.env
         dest: /home/ubuntu/deploy/deploymentconfig/
     
-    - name: stop running demoapp container
-      command: sudo docker container stop demoapp
+    - name: stop running webappjar container
+      command: sudo docker container stop webappjar
       ignore_errors: True
 
-    - name: remove existing demoapp container
-      command: sudo docker container rm demoapp
+    - name: remove existing webappjar container
+      command: sudo docker container rm webappjar
       ignore_errors: True
 
-    - name: remove existing demoapp image
-      command: sudo docker rmi demoapp --force
+    - name: remove existing webappjar image
+      command: sudo docker rmi webappjar --force
       ignore_errors: True
 
     - name: remove existing webnet network
@@ -40,8 +40,8 @@
     - name: create network webnet
       command: sudo docker network create webnet
 
-    - name: build image of demoapp using the dockerfile in this path
-      command: sudo docker image build -t demoapp /home/ubuntu/deploy/deploymentconfig
+    - name: build image of webappjar using the dockerfile in this path
+      command: sudo docker image build -t webappjar /home/ubuntu/deploy/deploymentconfig
 
-    - name: docker-compose-up demoapp
-      command: sudo docker-compose --env-file /home/ubuntu/deploy/deploymentconfig/demoapp.settings.qa.env -f /home/ubuntu/deploy/deploymentconfig/demoapp-docker-compose.yml up -d
+    - name: docker-compose-up webappjar
+      command: sudo docker-compose --env-file /home/ubuntu/deploy/deploymentconfig/webappjar.settings.qa.env -f /home/ubuntu/deploy/deploymentconfig/webappjar-docker-compose.yml up -d
