@@ -12,10 +12,10 @@ ARG VERSION=0.0.1
 VOLUME demoappvol
 
 # Add the service as demoapp.jar
-ADD ./target/demo-${VERSION}-SNAPSHOT.jar demoapp-${VERSION}.jar
+ADD ./target/demo-${VERSION}-SNAPSHOT.jar demoapp.jar
 
 # touch the archive for timestamp
-RUN sh -c 'touch /demoapp-${VERSION}.jar'
+RUN sh -c 'touch /demoapp.jar'
 
 # entrypoint to the image on run
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/demoapp-${VERSION}.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/demoapp.jar"]
